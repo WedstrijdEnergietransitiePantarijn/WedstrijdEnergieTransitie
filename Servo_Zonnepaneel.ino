@@ -1,33 +1,30 @@
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address 0x27, 16 column and 2 rows
+LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C addres is 0x27, 16 rijen en 2 lagen
 
-Servo myservo;  // create servo object to control a servo
-// twelve servo objects can be created on most boards
+Servo myservo;  // stel de servo in
 
-int pos = 0;    // variable to store the servo position
+int pos = 0;    // maak een variabele voor de positie en zet de waarde op 0
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(9);  // geef aan dat de arduino zich op pin 0 bevind
   Serial.begin(9600);
-  lcd.init(); // initialize the lcd
+  lcd.init(); // stel het lcd-scherm in
   lcd.backlight();
 }
 
 void loop() {
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
+  for (pos = 0; pos <= 180; pos += 1) { // ga van 0 naar 180 graden in stappen van 1 graden
     Serial.print("Dit is de actuele positie: ");
     Serial.println(pos);
    
-  lcd.clear();                  // clear display
-  lcd.setCursor(0, 0);          // move cursor to   (0, 0)
-  lcd.print("Huidige positie: ");        // print message at (3, 0)
-  lcd.setCursor(0, 1);          // move cursor to   (0, 1)
-  lcd.print(pos); // print message at (0, 1)
-  //delay(2000);                  // display the above for two seconds
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+  lcd.clear();                  // haal de tekst van het lcd-scherm weg
+  lcd.setCursor(0, 0);          // zet de lcd-cursor linksboven
+  lcd.print("Huidige positie: ");        // verander de tekst op het lcd-scherm
+  lcd.setCursor(0, 1);          // zet de lcd-cursor 1 vakje verder
+  lcd.print(pos); // laat de actuele positie weten
+    myservo.write(pos);              // laat de servo naar de waarde van de variabele pos gaan
     delay(240000);                       // Dit is dus 240 seconden en daarmee 4 minuten. Elke 4 min +1 x 180 = 720 minuten = 12 uur
     
   }
