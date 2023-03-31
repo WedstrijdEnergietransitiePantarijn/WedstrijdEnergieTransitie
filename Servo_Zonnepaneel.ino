@@ -28,8 +28,8 @@ void loop() {
     delay(240000);                       // Dit is dus 240 seconden en daarmee 4 minuten. Elke 4 min +1 x 180 = 720 minuten = 12 uur
     
   }
-  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
+  for (pos = 180; pos >= 0; pos -= 1) { // gaat van 180 naar 0 graden
+    myservo.write(pos);              // laat de servo naar de waarde van de variabele pos gaan
+    delay(15);                       // wacht 15 ms om de servo de tijd te geven om te draaien
   }
 }
